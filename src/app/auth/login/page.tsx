@@ -1,41 +1,54 @@
-import React from 'react'
+import React from "react";
 
 export default function Page() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="p-8 bg-white shadow-lg rounded-lg">
-        <h1 className="text-2xl bg-black font-bold mb-6 text-center">Login</h1>
-        <form className="flex flex-col space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            Login
-          </button>
-        </form>
+    <section className="flex items-center justify-center min-h-screen bg-blue-600">
+    
+      <div className="flex space-x-8  p-8 rounded-lg shadow-lg">
+        {/* Imagen */}
+        <div className="w-1/2 flex justify-start">
+          <img src="https://images.pexels.com/photos/4952628/pexels-photo-4952628.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Example" className="w-64 h- object-cover rounded-lg shadow-lg" />
+        </div>
+
+        {/* Formulario */}
+        <div className="w-1/2 ">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQryDa73unRex1DSh__Lpuw_ihLbjROfFhhA&s" alt="logo" width={"150px"} className="mx-12"/>
+          <h2 className="text-center text-2xl font-bold mb-10">Barberia</h2>
+          <form>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+               UserName
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="name"
+                type="text"
+                placeholder="UserName"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+               Password
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="password"
+                type="password"
+                placeholder="Password"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button"
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  )
+
+    </section>
+  );
 }
