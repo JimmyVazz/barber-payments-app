@@ -1,54 +1,109 @@
-import React from "react";
+"use client";
+
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import { auth } from "../../../lib/firebase";
+import { useRouter } from "next/navigation";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Page() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter(); // Hook para la navegación
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    if (id === "email") setEmail(value);
+    if (id === "password") setPassword(value);
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Inicio de sesión exitoso");
+      router.push("/dashboard");
+    } catch (error) {
+      toast.error("Error en el inicio de sesión: " + (error as Error).message);
+    } finally {
+      setLoading(false);
+      setEmail("");
+      setPassword("");
+    }
+  };
+
   return (
     <section className="flex items-center justify-center min-h-screen bg-blue-600">
-    
-      <div className="flex space-x-8  p-8 rounded-lg shadow-lg">
+      <div className="flex space-x-8 p-8 rounded-lg shadow-lg">
         {/* Imagen */}
         <div className="w-1/2 flex justify-start">
-          <img src="https://images.pexels.com/photos/4952628/pexels-photo-4952628.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Example" className="w-64 h- object-cover rounded-lg shadow-lg" />
+          <img
+            src="https://images.pexels.com/photos/4952628/pexels-photo-4952628.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt="Example"
+            className="w-64 h- object-cover rounded-lg shadow-lg"
+          />
         </div>
 
         {/* Formulario */}
-        <div className="w-1/2 ">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQryDa73unRex1DSh__Lpuw_ihLbjROfFhhA&s" alt="logo" width={"150px"} className="mx-12"/>
+        <div className="w-1/2">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQryDa73unRex1DSh__Lpuw_ihLbjROfFhhA&s"
+            alt="logo"
+            width={"150px"}
+            className="mx-12"
+          />
           <h2 className="text-center text-2xl font-bold mb-10">Barberia</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-               UserName
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="email"
+              >
+                Correo
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name"
-                type="text"
-                placeholder="UserName"
+                id="email"
+                type="email"
+                placeholder="Escribe tu correo"
+                value={email}
+                onChange={handleChange}
+                required
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-               Password
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="password"
+              >
+                Contraseña
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
-                placeholder="Password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={handleChange}
+                required
               />
             </div>
             <div className="flex items-center justify-between">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="button"
+                type="submit"
+                disabled={loading}
               >
-                Login
+                {loading ? "Cargando..." : "Iniciar sesión"}
               </button>
             </div>
           </form>
         </div>
       </div>
-
     </section>
   );
 }
