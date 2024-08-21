@@ -1,0 +1,18 @@
+.button-page{
+    background: #D4AF37;
+}
+.button-page:hover{
+    background: #1F2937;
+    color: #D4AF37;
+}
+.list-page{
+    background: #D4AF37;
+}
+.button-close{
+    background: #1F2937;
+    color: #D4AF37;
+}
+.button-close:hover{
+    background: #D4AF37;
+    color: white;
+}

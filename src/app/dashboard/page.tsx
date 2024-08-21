@@ -7,6 +7,9 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { Timestamp } from "firebase/firestore";
+import Image from "next/image";
+import LogoBarber from "../../../public/logo barberia.png";
+import "../dashboard/dashboard.css"
 
 interface DataCard {
   title: string;
@@ -100,51 +103,57 @@ const Dashboard: React.FC = () => {
 
   return (
     <section>
-      <div className="p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-bold">Edi The Barber</h1>
-          <div className="flex items-center space-x-2">
-            <span className="material-icons">👤</span>
-            <p>{user}</p>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={handleLogout}
-            >
-              Cerrar sesión
-            </button>
-          </div>
-        </div>
-        <div className="mb-4">
-          <button className="bg-green-500 text-white px-4 py-2 rounded">
-            <Link href={"/payment"}>Generar pago</Link>
+    <div className="p-4 md:p-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+      <Image
+                src={LogoBarber}
+                alt="Logo"
+                className="w-24 h-24 rounded-full mb-4 object-cover"
+              />
+        {/* <h1 className="text-xl md:text-2xl font-bold text-gray-800">Edi The Barber</h1> */}
+        <div className="flex items-center space-x-2 mt-2 md:mt-0">
+          <span className="material-icons">👤</span>
+          <p>{user}</p>
+          <button
+            className="button-close text-white px-4 py-2 rounded"
+            onClick={handleLogout}
+          >
+            Cerrar sesión
           </button>
         </div>
-        <section>
-          <div className="mt-2 border-t-2 border-slate-400 flex flex-col md:flex-row items-center">
-            <div className="w-full">
-              <h2 className="text-xl font-bold">Pagos recientes</h2>
-              <div className="grid grid-cols-1 gap-2 mt-2">
-                {recentSales.map(({ name, concept, total, id }, index) => (
-                  <div
-                    key={id}
-                    className="flex justify-between p-4 shadow rounded"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <span className="material-icons">💰</span>
-                      <p>Cliente: {name}</p>
-                      <p>Concepto: {concept}</p>
-                    </div>
-                    <div>
-                      <p className="text-xl font-bold">${total}</p>
-                    </div>
+      </div>
+      <div className="mb-4 ">
+        <button className="button-page text-white px-4 py-2 rounded">
+          <Link href={"/payment"}>Generar pago</Link>
+        </button>
+      </div>
+      <section>
+        <div className="mt-2 border-t-2 border-slate-400 flex flex-col md:flex-row">
+          <div className="w-full">
+            <h2 className="text-lg md:text-xl font-bold text-gray-800">Historial de pagos</h2>
+            <div className="grid grid-cols-1 gap-2 mt-2">
+              {recentSales.map(({ name, concept, total, id }, index) => (
+                <div
+                  key={id}
+                  className="list-page flex flex-col md:flex-row justify-between p-4 shadow rounded text-gray-800"
+                >
+                  <div className="flex flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0 md:space-x-4">
+                    <span className="material-icons">💰</span>
+                    <p>Cliente: {name}</p>
+                    <p>Concepto: {concept}</p>
                   </div>
-                ))}
-              </div>
+                  <div className="mt-2 md:mt-0">
+                    <p className="text-lg md:text-xl font-bold">${total}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
+  </section>
+  
   );
 };
 

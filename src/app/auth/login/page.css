@@ -1,6 +1,10 @@
 .section-login{
     background: #D4AF37;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra */
+    transition: box-shadow 0.3s ease;
+
 }
+
 .title-login{
     color: #D4AF37;
 }
@@ -9,4 +13,7 @@ button{
 } 
 .label-login{
     color: #D4AF37;
+}
+button:hover {
+    border: 1px solid #D4AF37;
 }

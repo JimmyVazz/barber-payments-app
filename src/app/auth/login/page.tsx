@@ -70,7 +70,7 @@ export default function Page() {
           </div>
           <div className="mb-6">
             <label
-              className="block text-sm font-bold mb-2"
+              className=" label-login block text-sm font-bold mb-2"
               htmlFor="password"
             >
               Contraseña
