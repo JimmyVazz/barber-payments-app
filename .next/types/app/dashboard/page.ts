@@ -1,4 +1,4 @@
-// File: /Users/macdejimmy/Desktop/projects/barber-app-payments/src/app/dashboard/page.tsx
+// File: C:\Users\maric\Desktop\barber-payments-app\src\app\dashboard\page.tsx
 import * as entry from '../../../../src/app/dashboard/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

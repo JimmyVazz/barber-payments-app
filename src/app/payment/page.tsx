@@ -128,11 +128,16 @@ const PaymentPage: FC = () => {
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
                   <option value="">Selecciona una opción de la lista</option>
-                  <option value="Corte cabello">Corte cabello</option>
+                  <option value="Certificado">Certificado</option>
+                  <option value="Inscripción">Inscripción</option>
                   <option value="pago mensualidad">Pago mensualidad</option>
-                  <option value="inscripcion">Inscripción</option>
+                  <option value="Apartado de lugar">Apartado de lugar</option>
                 </select>
               </div>
+              <label className=" block text-sm font-medium text-gray-700">
+                Escribe una Fecha: <br />
+                <input type="date" className=" mb-4"/>
+              </label>
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">
                   Total
